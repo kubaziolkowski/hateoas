@@ -1,0 +1,4 @@
+rootProject.name = 'jaz-mysql'
+
+include 'jaz-api'
+include 'jaz-client'

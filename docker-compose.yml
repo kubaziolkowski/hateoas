@@ -1,0 +1,25 @@
+version: '3'
+services:
+  jazapi:
+    build: ./jaz-api
+    ports:
+      - "11111:11111"
+    restart: on-failure:5
+    depends_on:
+      - cardb
+  jazclient:
+    build: ./jaz-client
+    ports:
+      - "22222:22222"
+    depends_on:
+      - jazapi
+  cardb:
+    build: ./db
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+      MYSQL_DATABASE: carseller
+      MYSQL_USER: salesman
+      MYSQL_PASSWORD: pwd
